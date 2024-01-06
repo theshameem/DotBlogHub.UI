@@ -7,7 +7,7 @@ import { CategoryListComponent } from './category-list/category-list.component';
 import { NavbarComponent } from './navbar/navbar.component';
 
 const routes: Routes = [
-  { path: 'category-list', component: CategoryListComponent },
+  { path: 'admin/category-list', component: CategoryListComponent },
 ];
 @NgModule({
   declarations: [AppComponent, NavbarComponent, CategoryListComponent],
