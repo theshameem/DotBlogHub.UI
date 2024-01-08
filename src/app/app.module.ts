@@ -17,6 +17,7 @@ import { CategoryListComponent } from './category-list/category-list.component';
 import { CreateCategoryModalComponent } from './create-category-modal/create-category-modal.component';
 import { ClickOutsideDirective } from './directives/click-outside.directive';
 import { NavbarComponent } from './navbar/navbar.component';
+import { CategoryService } from './services/category.service';
 
 const routes: Routes = [
   { path: 'admin/category-list', component: CategoryListComponent },
@@ -28,6 +29,7 @@ const routes: Routes = [
     CategoryListComponent,
     CreateCategoryModalComponent,
     ClickOutsideDirective,
+    CategoryListComponent,
   ],
   imports: [
     BrowserModule,
@@ -44,6 +46,7 @@ const routes: Routes = [
   ],
   providers: [
     { provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: { hasBackdrop: false } },
+    CategoryService,
   ],
   bootstrap: [AppComponent],
 })
