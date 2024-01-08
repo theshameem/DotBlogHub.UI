@@ -1,6 +1,12 @@
 <div class="container">
   <h1 class="header p-3">Category List</h1>
-  <button class="btn btn-primary mb-4 float-end">Add Category</button>
+  <button
+    class="btn btn-primary mb-4 float-end"
+    (click)="openCreateCategoryModal()"
+    [disabled]="isModalOpen"
+  >
+    Add Category
+  </button>
   <table class="table table-bordered">
     <thead>
       <tr>
