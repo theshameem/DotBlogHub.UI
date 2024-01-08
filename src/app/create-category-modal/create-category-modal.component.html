@@ -1,0 +1,50 @@
+<div
+  fxLayout="column"
+  fxLayoutGap="24px"
+  class="create-modal"
+  (clickOutside)="onClickedOutside($event)"
+>
+  <div fxLayout="row" fxLayoutAlign="space-between center" class="header">
+    <h2 style="margin: 0">Create category</h2>
+    <mat-icon mat-dialog-close>close</mat-icon>
+  </div>
+
+  <div fxlayout="column" [formGroup]="categoryForm" class="form-input">
+    <mat-form-field style="width: 100%; margin-bottom: 24px">
+      <mat-label>Category Name</mat-label>
+      <input matInput formControlName="categoryName" />
+      <mat-error
+        *ngIf="
+          categoryForm.get('categoryName')?.invalid &&
+          categoryForm.get('categoryName')?.touched
+        "
+      >
+        Category Name is required.
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field style="width: 100%">
+      <mat-label>Url Handler</mat-label>
+      <input matInput formControlName="urlHandler" />
+      <mat-error
+        *ngIf="
+          categoryForm.get('urlHandler')?.invalid &&
+          categoryForm.get('urlHandler')?.touched
+        "
+      >
+        Url Handler is required.
+      </mat-error>
+    </mat-form-field>
+  </div>
+
+  <div class="footer">
+    <button class="btn btn-secondary" mat-dialog-close>Cancel</button>
+    <button
+      class="btn btn-primary float-end"
+      [disabled]="categoryForm.invalid"
+      (click)="submitForm()"
+    >
+      Save
+    </button>
+  </div>
+</div>
