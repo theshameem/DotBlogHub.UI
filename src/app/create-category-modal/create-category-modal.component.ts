@@ -1,18 +1,22 @@
-import { Component, HostListener, OnInit } from '@angular/core';
+import { Component, HostListener, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
+import { Subject, takeUntil } from 'rxjs';
+import { CategoryService } from '../services/category.service';
 
 @Component({
   selector: 'app-create-category-modal',
   templateUrl: './create-category-modal.component.html',
   styleUrls: ['./create-category-modal.component.scss'],
 })
-export class CreateCategoryModalComponent implements OnInit {
+export class CreateCategoryModalComponent implements OnInit, OnDestroy {
   categoryForm!: FormGroup;
+  private _unsubscribeAll: Subject<void> = new Subject<any>();
 
   constructor(
-    public dialogRef: MatDialogRef<CreateCategoryModalComponent>,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private categoryService: CategoryService,
+    public dialogRef: MatDialogRef<CreateCategoryModalComponent>
   ) {}
 
   ngOnInit(): void {
@@ -28,6 +32,12 @@ export class CreateCategoryModalComponent implements OnInit {
 
   submitForm(): void {
     if (this.categoryForm.valid) {
+      this.categoryService
+        .addCategory(this.categoryForm.value)
+        .pipe(takeUntil(this._unsubscribeAll))
+        .subscribe((res: any) => {
+          console.log('res: ', res);
+        });
       this.dialogRef.close();
     }
   }
@@ -58,5 +68,10 @@ export class CreateCategoryModalComponent implements OnInit {
     if (!open) {
       this.dialogRef.close();
     }
+  }
+
+  ngOnDestroy(): void {
+    this._unsubscribeAll.next();
+    this._unsubscribeAll.complete();
   }
 }
