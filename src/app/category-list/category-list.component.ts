@@ -15,7 +15,6 @@ export class CategoryListComponent {
 
   openCreateCategoryModal(): void {
     this.isModalOpen = true;
-    console.log('openCreateCategoryModal()');
     const dialogRef = this.dialog.open(CreateCategoryModalComponent, {
       width: '400px',
     });
