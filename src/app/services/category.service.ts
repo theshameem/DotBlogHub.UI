@@ -1,18 +1,23 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { environment } from 'src/environments/environment';
+import { AddCategoryRequest } from '../../models/add-category-request.model';
+import { Category } from '../../models/category.model';
 
 @Injectable()
 export class CategoryService {
   constructor(private http: HttpClient) {}
 
-  addCategory(model: any): Observable<void> {
-    const payload = {
-      name: model.categoryName,
-      urlHandle: model.urlHandler,
-    };
-    const url = `https://localhost:7045/api/categories`;
+  addCategory(payload: AddCategoryRequest): Observable<void> {
+    const url = `${environment.apiBaseUrl}/api/categories`;
 
     return this.http.post<void>(url, payload);
+  }
+
+  getCategoryList(): Observable<Category[]> {
+    const url = `${environment.apiBaseUrl}/api/categories`;
+
+    return this.http.get<Category[]>(url);
   }
 }
