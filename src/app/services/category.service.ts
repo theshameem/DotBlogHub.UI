@@ -15,4 +15,10 @@ export class CategoryService {
 
     return this.http.post<void>(url, payload);
   }
+
+  getCategoryList(): Observable<void> {
+    const url = `https://localhost:7045/api/Categories`;
+
+    return this.http.get<void>(url);
+  }
 }
