@@ -2,6 +2,7 @@ import { Component, HostListener, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
 import { Subject, takeUntil } from 'rxjs';
+import { AddCategoryRequest } from '../../models/add-category-request.model';
 import { CategoryService } from '../services/category.service';
 
 @Component({
@@ -32,13 +33,17 @@ export class CreateCategoryModalComponent implements OnInit, OnDestroy {
 
   submitForm(): void {
     if (this.categoryForm.valid) {
+      const payload: AddCategoryRequest = {
+        name: this.categoryForm.value.categoryName,
+        urlHandle: this.categoryForm.value.urlHandler,
+      };
+
       this.categoryService
-        .addCategory(this.categoryForm.value)
+        .addCategory(payload)
         .pipe(takeUntil(this._unsubscribeAll))
         .subscribe((res: any) => {
-          console.log('res: ', res);
+          this.dialogRef.close(true);
         });
-      this.dialogRef.close();
     }
   }
 

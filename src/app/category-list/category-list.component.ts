@@ -1,6 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Subject, takeUntil } from 'rxjs';
+import { Category } from '../../models/category.model';
 import { CreateCategoryModalComponent } from '../create-category-modal/create-category-modal.component';
 import { CategoryService } from '../services/category.service';
 
@@ -11,7 +12,7 @@ import { CategoryService } from '../services/category.service';
 })
 export class CategoryListComponent implements OnInit, OnDestroy {
   isModalOpen: boolean = false;
-  categoryList: any = [];
+  categoryList: Category[] = [];
   private _unsubscribeAll: Subject<void> = new Subject<any>();
 
   constructor(
@@ -30,6 +31,7 @@ export class CategoryListComponent implements OnInit, OnDestroy {
     });
 
     dialogRef.afterClosed().subscribe((result) => {
+      if (result) this.getCategories();
       this.isModalOpen = false;
     });
   }
