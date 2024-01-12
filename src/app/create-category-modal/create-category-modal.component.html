@@ -41,7 +41,7 @@
     <button class="btn btn-secondary" mat-dialog-close>Cancel</button>
     <button
       class="btn btn-primary float-end"
-      [disabled]="categoryForm.invalid"
+      [disabled]="!categoryForm.dirty || categoryForm.invalid"
       (click)="submitForm()"
     >
       Save
