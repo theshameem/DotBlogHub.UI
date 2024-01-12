@@ -45,6 +45,24 @@ export class CategoryListComponent implements OnInit, OnDestroy {
       });
   }
 
+  editCategory(category: Category): void {
+    // console.log(category);
+    this.isModalOpen = true;
+    const dialogRef = this.dialog.open(CreateCategoryModalComponent, {
+      data: category,
+      width: '400px',
+    });
+
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result) this.getCategories();
+      this.isModalOpen = false;
+    });
+  }
+
+  deleteCategory(category: Category): void {
+    console.log(category);
+  }
+
   ngOnDestroy(): void {
     this._unsubscribeAll.complete();
     this._unsubscribeAll.next();
