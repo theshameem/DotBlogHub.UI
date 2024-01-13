@@ -10,6 +10,7 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { Subject, takeUntil } from 'rxjs';
 import { AddCategoryRequest } from '../../models/add-category-request.model';
 import { Category } from '../../models/category.model';
+import { EditCategory } from '../../models/edit-category-request.model';
 import { CategoryService } from '../services/category.service';
 
 @Component({
@@ -49,7 +50,6 @@ export class CreateCategoryModalComponent implements OnInit, OnDestroy {
       };
       if (this.data) {
         //Do update category call
-        payload.id = this.data.id;
         this.updateCategory(payload);
       } else {
         //Do add category api call
@@ -67,8 +67,13 @@ export class CreateCategoryModalComponent implements OnInit, OnDestroy {
       });
   }
 
-  updateCategory(payload: AddCategoryRequest): void {
-    console.log('payload: ', payload);
+  updateCategory(payload: EditCategory): void {
+    this.categoryService
+      .editCategory(this.data.id, payload)
+      .pipe(takeUntil(this._unsubscribeAll))
+      .subscribe((res) => {
+        this.dialogRef.close(true);
+      });
   }
 
   @HostListener('window:keyup.esc') onKeyUp() {
