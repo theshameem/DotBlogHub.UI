@@ -60,7 +60,12 @@ export class CategoryListComponent implements OnInit, OnDestroy {
   }
 
   deleteCategory(category: Category): void {
-    console.log(category);
+    this.categoryService
+      .deleteCategory(category.id)
+      .pipe(takeUntil(this._unsubscribeAll))
+      .subscribe((res) => {
+        this.getCategories();
+      });
   }
 
   ngOnDestroy(): void {
