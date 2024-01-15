@@ -13,4 +13,8 @@ export class NavbarComponent {
   redirectToCategoryList(): void {
     this.router.navigate(['/admin/category-list']);
   }
+
+  redirectToBlogPostList(): void {
+    this.router.navigate(['/admin/blogpost-list']);
+  }
 }
