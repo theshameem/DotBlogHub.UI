@@ -14,6 +14,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule, Routes } from '@angular/router';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { BlogPostListComponent } from './blog-post-list/blog-post-list.component';
 import { CategoryListComponent } from './category-list/category-list.component';
 import { CreateCategoryModalComponent } from './create-category-modal/create-category-modal.component';
 import { ClickOutsideDirective } from './directives/click-outside.directive';
@@ -22,6 +23,7 @@ import { CategoryService } from './services/category.service';
 
 const routes: Routes = [
   { path: 'admin/category-list', component: CategoryListComponent },
+  { path: 'admin/blogpost-list', component: BlogPostListComponent },
 ];
 @NgModule({
   declarations: [
@@ -31,6 +33,7 @@ const routes: Routes = [
     CreateCategoryModalComponent,
     ClickOutsideDirective,
     CategoryListComponent,
+    BlogPostListComponent,
   ],
   imports: [
     BrowserModule,
