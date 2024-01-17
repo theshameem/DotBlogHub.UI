@@ -12,6 +12,7 @@ import { MatInputModule } from '@angular/material/input';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule, Routes } from '@angular/router';
+import { AddBlogPostComponent } from './add-blog-post/add-blog-post.component';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BlogPostListComponent } from './blog-post-list/blog-post-list.component';
@@ -24,6 +25,7 @@ import { CategoryService } from './services/category.service';
 const routes: Routes = [
   { path: 'admin/category-list', component: CategoryListComponent },
   { path: 'admin/blogpost-list', component: BlogPostListComponent },
+  { path: 'admin/add-blog-post', component: AddBlogPostComponent },
 ];
 @NgModule({
   declarations: [
@@ -34,6 +36,7 @@ const routes: Routes = [
     ClickOutsideDirective,
     CategoryListComponent,
     BlogPostListComponent,
+    AddBlogPostComponent,
   ],
   imports: [
     BrowserModule,
