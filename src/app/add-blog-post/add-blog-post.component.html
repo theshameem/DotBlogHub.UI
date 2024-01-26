@@ -1,1 +1,65 @@
-<p>add-blog-post works!</p>
+<div class="container">
+  <h1>Add Blog Post</h1>
+  <div class="blog-form">
+    <form fxLayout="column" fxLayoutGap="24px">
+      <div class="form-group">
+        <label>Title</label>
+        <input type="text" class="form-control" placeholder="Enter Title" />
+      </div>
+
+      <div class="form-group">
+        <label>Url Handle</label>
+        <input
+          type="text"
+          class="form-control"
+          placeholder="Enter Url Handle"
+        />
+      </div>
+
+      <div class="form-group">
+        <label>Short Description</label>
+        <input
+          type="text"
+          class="form-control"
+          placeholder="Enter Short Description"
+        />
+      </div>
+
+      <div class="form-group">
+        <label>Content</label>
+        <textarea type="text" class="form-control"> </textarea>
+      </div>
+
+      <div class="form-group">
+        <label style="margin-right: 12px">Featured Image Url</label>
+        <input type="file" class="form-control-file" />
+      </div>
+
+      <div class="form-group">
+        <label>Author</label>
+        <input type="text" class="form-control" />
+      </div>
+
+      <div class="form-check">
+        <input type="checkbox" class="form-check-input" />
+        <label class="form-check-label">Is Visible?</label>
+      </div>
+
+      <div class="form-group">
+        <label>Author</label>
+        <input type="text" class="form-control" />
+      </div>
+
+      <div class="form-group">
+        <label>Categories</label>
+        <select multiple class="form-control">
+          <option>HTML</option>
+          <option>CSS</option>
+          <option>C#</option>
+          <option>ASP .NET Core</option>
+        </select>
+      </div>
+    </form>
+    <button type="submit" class="btn btn-primary mt-4">Submit</button>
+  </div>
+</div>
