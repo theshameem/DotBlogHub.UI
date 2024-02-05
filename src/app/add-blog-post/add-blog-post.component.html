@@ -1,16 +1,24 @@
 <div class="container">
   <h1>Add Blog Post</h1>
   <div class="blog-form">
-    <form fxLayout="column" fxLayoutGap="24px">
+    <form #form="ngForm" fxLayout="column" fxLayoutGap="24px">
       <div class="form-group">
         <label>Title</label>
-        <input type="text" class="form-control" placeholder="Enter Title" />
+        <input
+          type="text"
+          [(ngModel)]="blogPostModel.title"
+          [ngModelOptions]="{ standalone: true }"
+          class="form-control"
+          placeholder="Enter Title"
+        />
       </div>
 
       <div class="form-group">
         <label>Url Handle</label>
         <input
           type="text"
+          [(ngModel)]="blogPostModel.urlHandle"
+          [ngModelOptions]="{ standalone: true }"
           class="form-control"
           placeholder="Enter Url Handle"
         />
@@ -20,6 +28,8 @@
         <label>Short Description</label>
         <input
           type="text"
+          [(ngModel)]="blogPostModel.shortDescription"
+          [ngModelOptions]="{ standalone: true }"
           class="form-control"
           placeholder="Enter Short Description"
         />
@@ -27,30 +37,59 @@
 
       <div class="form-group">
         <label>Content</label>
-        <textarea type="text" class="form-control"> </textarea>
+        <textarea
+          type="text"
+          [(ngModel)]="blogPostModel.content"
+          [ngModelOptions]="{ standalone: true }"
+          class="form-control"
+        >
+        </textarea>
       </div>
 
       <div class="form-group">
         <label style="margin-right: 12px">Featured Image Url</label>
-        <input type="file" class="form-control-file" />
+        <input
+          type="file"
+          [(ngModel)]="blogPostModel.featuredImageUrl"
+          [ngModelOptions]="{ standalone: true }"
+          class="form-control-file"
+        />
+      </div>
+
+      <div class="mt-3">
+        <label class="form-label">Published Date</label>
+        <input
+          type="date"
+          value="{{ blogPostModel.publishedDate }}"
+          [ngModel]="blogPostModel.publishedDate | date : 'yyyy-MM-dd'"
+          (ngModelChange)="blogPostModel.publishedDate = $event"
+          [ngModelOptions]="{ standalone: true }"
+          class="form-control"
+        />
       </div>
 
       <div class="form-group">
         <label>Author</label>
-        <input type="text" class="form-control" />
+        <input
+          type="text"
+          [(ngModel)]="blogPostModel.author"
+          [ngModelOptions]="{ standalone: true }"
+          class="form-control"
+        />
       </div>
 
       <div class="form-check">
-        <input type="checkbox" class="form-check-input" />
+        <input
+          type="checkbox"
+          [(ngModel)]="blogPostModel.isVisible"
+          [ngModelOptions]="{ standalone: true }"
+          class="form-check-input"
+        />
         <label class="form-check-label">Is Visible?</label>
       </div>
 
-      <div class="form-group">
-        <label>Author</label>
-        <input type="text" class="form-control" />
-      </div>
-
-      <div class="form-group">
+      <!-- Commented for now, will be used later  -->
+      <!-- <div class="form-group">
         <label>Categories</label>
         <select multiple class="form-control">
           <option>HTML</option>
@@ -58,8 +97,10 @@
           <option>C#</option>
           <option>ASP .NET Core</option>
         </select>
-      </div>
+      </div> -->
     </form>
-    <button type="submit" class="btn btn-primary mt-4">Submit</button>
+    <button type="submit" (click)="onFormSubmit()" class="btn btn-primary mt-4">
+      Submit
+    </button>
   </div>
 </div>
