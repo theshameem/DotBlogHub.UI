@@ -12,10 +12,11 @@ import { MatInputModule } from '@angular/material/input';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule, Routes } from '@angular/router';
-import { AddBlogPostComponent } from './add-blog-post/add-blog-post.component';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { BlogPostListComponent } from './blog-post-list/blog-post-list.component';
+import { AddBlogPostComponent } from './blog-post/add-blog-post/add-blog-post.component';
+import { BlogPostListComponent } from './blog-post/blog-post-list/blog-post-list.component';
+import { BlogPostService } from './blog-post/services/blog-post.service';
 import { CategoryListComponent } from './category-list/category-list.component';
 import { CreateCategoryModalComponent } from './create-category-modal/create-category-modal.component';
 import { ClickOutsideDirective } from './directives/click-outside.directive';
@@ -55,6 +56,7 @@ const routes: Routes = [
   providers: [
     { provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: { hasBackdrop: false } },
     CategoryService,
+    BlogPostService,
   ],
   bootstrap: [AppComponent],
 })
