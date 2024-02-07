@@ -14,7 +14,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule, Routes } from '@angular/router';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { AddBlogPostComponent } from './blog-post/blog-post-list/add-blog-post/add-blog-post.component';
+import { AddBlogPostComponent } from './blog-post/add-blog-post/add-blog-post.component';
 import { BlogPostListComponent } from './blog-post/blog-post-list/blog-post-list.component';
 import { CategoryListComponent } from './category-list/category-list.component';
 import { CreateCategoryModalComponent } from './create-category-modal/create-category-modal.component';
