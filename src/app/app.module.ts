@@ -16,6 +16,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AddBlogPostComponent } from './blog-post/add-blog-post/add-blog-post.component';
 import { BlogPostListComponent } from './blog-post/blog-post-list/blog-post-list.component';
+import { BlogPostService } from './blog-post/services/blog-post.service';
 import { CategoryListComponent } from './category-list/category-list.component';
 import { CreateCategoryModalComponent } from './create-category-modal/create-category-modal.component';
 import { ClickOutsideDirective } from './directives/click-outside.directive';
@@ -55,6 +56,7 @@ const routes: Routes = [
   providers: [
     { provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: { hasBackdrop: false } },
     CategoryService,
+    BlogPostService,
   ],
   bootstrap: [AppComponent],
 })
