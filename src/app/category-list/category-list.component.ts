@@ -46,7 +46,6 @@ export class CategoryListComponent implements OnInit, OnDestroy {
   }
 
   editCategory(category: Category): void {
-    // console.log(category);
     this.isModalOpen = true;
     const dialogRef = this.dialog.open(CreateCategoryModalComponent, {
       data: category,

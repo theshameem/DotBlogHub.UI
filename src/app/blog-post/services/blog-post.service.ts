@@ -13,4 +13,10 @@ export class BlogPostService {
     const url = `${environment.apiBaseUrl}/api/blogposts`;
     return this.http.post<BlogPost>(url, payload);
   }
+
+  getBlogList(): Observable<BlogPost[]> {
+    const url = `${environment.apiBaseUrl}/api/blogposts`;
+
+    return this.http.get<BlogPost[]>(url);
+  }
 }

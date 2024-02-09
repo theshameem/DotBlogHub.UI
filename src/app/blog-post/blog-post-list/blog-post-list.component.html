@@ -1,9 +1,31 @@
-<div class="container">
-  <h1 class="header p-3">Blog Post List</h1>
-  <button
-    class="btn btn-primary mb-4 float-end"
-    [routerLink]="['/admin/add-blog-post']"
-  >
-    Add Blog
-  </button>
+<div class="container" fxLayout="column">
+  <div class="top-section">
+    <h1 class="header p-3">Blog Post List</h1>
+    <button
+      class="btn btn-primary mb-4 float-end"
+      [routerLink]="['/admin/add-blog-post']"
+    >
+      Add Blog
+    </button>
+  </div>
+
+  <ng-container *ngIf="blogPosts$ | async as blogPosts">
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th>Title</th>
+          <th>Short Description</th>
+          <th>Is Visible?</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr *ngFor="let blog of blogPosts">
+          <td>{{ blog.title }}</td>
+          <td>{{ blog.shortDescription }}</td>
+          <td>{{ blog.isVisible }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </ng-container>
 </div>
