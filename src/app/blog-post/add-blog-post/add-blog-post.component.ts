@@ -34,9 +34,8 @@ export class AddBlogPostComponent {
       },
 
       error: (e) => {
-        console.log('error: ', e);
+        console.error('Something went wrong')
       },
     });
-    console.log(this.blogPostModel);
   }
 }
