@@ -1,5 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { Observable } from 'rxjs';
+import { Category } from '../../../models/category.model';
+import { CategoryService } from '../../services/category.service';
 import { AddBlogPost } from '../models/add-blog-post.model';
 import { BlogPostService } from '../services/blog-post.service';
 
@@ -8,12 +11,14 @@ import { BlogPostService } from '../services/blog-post.service';
   templateUrl: './add-blog-post.component.html',
   styleUrls: ['./add-blog-post.component.scss'],
 })
-export class AddBlogPostComponent {
+export class AddBlogPostComponent implements OnInit {
   blogPostModel: AddBlogPost;
+  categories$!: Observable<Category[]>;
 
   constructor(
+    private router: Router,
     private blogPostService: BlogPostService,
-    private router: Router
+    private categoryService: CategoryService
   ) {
     this.blogPostModel = {
       title: '',
@@ -24,7 +29,12 @@ export class AddBlogPostComponent {
       author: '',
       isVisible: true,
       publishedDate: new Date(),
+      categories: []
     };
+  }
+
+  ngOnInit(): void {
+    this.categories$ = this.categoryService.getCategoryList();
   }
 
   onFormSubmit(): void {
@@ -37,5 +47,10 @@ export class AddBlogPostComponent {
         console.error('Something went wrong')
       },
     });
+  }
+
+  updateCategories(event: Event): void {
+    const selectedOptions = Array.from((event.target as HTMLSelectElement).selectedOptions);
+    this.blogPostModel["categories"] = selectedOptions.map(option => option.value);
   }
 }
