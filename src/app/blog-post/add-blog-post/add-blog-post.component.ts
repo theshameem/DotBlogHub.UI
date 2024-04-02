@@ -48,9 +48,4 @@ export class AddBlogPostComponent implements OnInit {
       },
     });
   }
-
-  updateCategories(event: Event): void {
-    const selectedOptions = Array.from((event.target as HTMLSelectElement).selectedOptions);
-    this.blogPostModel["categories"] = selectedOptions.map(option => option.value);
-  }
 }
