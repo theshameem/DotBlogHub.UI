@@ -16,6 +16,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AddBlogPostComponent } from './blog-post/add-blog-post/add-blog-post.component';
 import { BlogPostListComponent } from './blog-post/blog-post-list/blog-post-list.component';
+import { EditBlogpostComponent } from './blog-post/edit-blogpost/edit-blogpost.component';
 import { BlogPostService } from './blog-post/services/blog-post.service';
 import { CategoryListComponent } from './category-list/category-list.component';
 import { CreateCategoryModalComponent } from './create-category-modal/create-category-modal.component';
@@ -27,6 +28,7 @@ const routes: Routes = [
   { path: 'admin/category-list', component: CategoryListComponent },
   { path: 'admin/blogpost-list', component: BlogPostListComponent },
   { path: 'admin/add-blog-post', component: AddBlogPostComponent },
+  { path: 'admin/blogposts/:id', component: EditBlogpostComponent },
 ];
 @NgModule({
   declarations: [
@@ -38,6 +40,7 @@ const routes: Routes = [
     CategoryListComponent,
     BlogPostListComponent,
     AddBlogPostComponent,
+    EditBlogpostComponent,
   ],
   imports: [
     BrowserModule,
