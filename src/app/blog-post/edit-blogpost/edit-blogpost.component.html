@@ -90,16 +90,22 @@
           <label class="form-check-label">Is Visible?</label>
         </div>
 
-        <!-- <div class="mt-3">
+        <div class="mt-3">
           <label>Categories</label>
           <ng-container *ngIf="categories$ | async as categories">
-            <select name="blogPostModel.categories" id="categories" class="form-control" multiple [(ngModel)]="blogPostModel.categories">
+            <select
+              name="blogPostModel.categories"
+              id="categories"
+              class="form-control"
+              multiple
+              [(ngModel)]="selectedCategories"
+            >
               <option *ngFor="let category of categories" [value]="category.id">
                 {{ category.name }}
               </option>
             </select>
           </ng-container>
-        </div> -->
+        </div>
       </form>
       <button
         type="submit"
