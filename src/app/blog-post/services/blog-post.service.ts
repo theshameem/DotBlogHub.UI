@@ -25,4 +25,10 @@ export class BlogPostService {
 
     return this.http.get<BlogPost>(url);
   }
+
+  updateBlogPostById(id: string, payload: any): Observable<BlogPost> {
+    const url = `${environment.apiBaseUrl}/api/blogposts/${id}`;
+
+    return this.http.put<BlogPost>(url, payload);
+  }
 }
