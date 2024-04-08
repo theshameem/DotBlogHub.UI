@@ -45,16 +45,21 @@ export class EditBlogpostComponent implements OnInit, OnDestroy {
   }
 
   onFormSubmit(): void {
-    // if(this.blogPostModel) {
-    //   this.blogPostService.createBlogPost(this.blogPostModel).subscribe({
-    //     next: (response) => {
-    //       this.router.navigateByUrl('/admin/blogpost-list');
-    //     },
-    //     error: (e) => {
-    //       console.error('Something went wrong')
-    //     },
-    //   });
-    // }
+    if (this.blogPostModel && this.id) {
+      let payload = {
+        title: this.blogPostModel?.title,
+        urlHandle: this.blogPostModel?.urlHandle,
+        shortDescription: this.blogPostModel?.shortDescription,
+        content: this.blogPostModel?.content,
+        featuredImageUrl: this.blogPostModel?.featuredImageUrl,
+        publishedDate: this.blogPostModel?.publishedDate,
+        author: this.blogPostModel?.author,
+        isVisible: this.blogPostModel?.isVisible,
+        categories: this.selectedCategories,
+      };
+
+      this.blogPostService.updateBlogPostById(this.id, payload).subscribe();
+    }
   }
 
   ngOnDestroy(): void {
