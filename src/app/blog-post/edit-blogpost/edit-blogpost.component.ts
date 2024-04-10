@@ -1,5 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Observable, Subscription } from 'rxjs';
 import { CategoryService } from '../../../app/services/category.service';
 import { Category } from '../../../models/category.model';
@@ -17,8 +17,12 @@ export class EditBlogpostComponent implements OnInit, OnDestroy {
   blogPostModel?: BlogPost;
   categories$?: Observable<Category[]>;
   selectedCategories?: Array<string>;
+  getBlogPostSubscription?: Subscription;
+  updateBlogPostSubscription?: Subscription;
+  deleteBlogPostSubscription?: Subscription;
 
   constructor(
+    private router: Router,
     private route: ActivatedRoute,
     private blogPostService: BlogPostService,
     private categoryService: CategoryService
@@ -33,12 +37,14 @@ export class EditBlogpostComponent implements OnInit, OnDestroy {
 
         // Get BlogPost from API
         if (this.id) {
-          this.blogPostService.getBlogPostId(this.id).subscribe({
-            next: (response) => {
-              this.blogPostModel = response;
-              this.selectedCategories = response.categories.map((x) => x.id);
-            },
-          });
+          this.getBlogPostSubscription = this.blogPostService
+            .getBlogPostId(this.id)
+            .subscribe({
+              next: (response) => {
+                this.blogPostModel = response;
+                this.selectedCategories = response.categories.map((x) => x.id);
+              },
+            });
         }
       },
     });
@@ -58,11 +64,29 @@ export class EditBlogpostComponent implements OnInit, OnDestroy {
         categories: this.selectedCategories,
       };
 
-      this.blogPostService.updateBlogPostById(this.id, payload).subscribe();
+      this.updateBlogPostSubscription = this.blogPostService
+        .updateBlogPostById(this.id, payload)
+        .subscribe();
+    }
+  }
+
+  onDelete(): void {
+    if (this.id) {
+      //call the service to delete blog post
+      this.deleteBlogPostSubscription = this.blogPostService
+        .deleteBlogPostById(this.id)
+        .subscribe({
+          next: (response) => {
+            this.router.navigateByUrl('/admin/blogpost-list');
+          },
+        });
     }
   }
 
   ngOnDestroy(): void {
     this.routeSubscription?.unsubscribe();
+    this.getBlogPostSubscription?.unsubscribe();
+    this.updateBlogPostSubscription?.unsubscribe();
+    this.deleteBlogPostSubscription?.unsubscribe();
   }
 }

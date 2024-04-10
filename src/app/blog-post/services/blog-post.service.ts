@@ -31,4 +31,10 @@ export class BlogPostService {
 
     return this.http.put<BlogPost>(url, payload);
   }
+
+  deleteBlogPostById(id: string): Observable<BlogPost> {
+    const url = `${environment.apiBaseUrl}/api/blogposts/${id}`;
+
+    return this.http.delete<BlogPost>(url);
+  }
 }
